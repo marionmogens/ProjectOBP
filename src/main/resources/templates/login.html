@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Toko Buku</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      
+      /* BLUE BACKGROUND GRADIENT */
+      background: radial-gradient(circle at top, #6ac6ff, #1c4e8c);
+      position: relative;
+    }
+
+    /* BUBBLE BACKGROUND */
+    .bubble {
+      position: absolute;
+      bottom: -150px;
+      background: rgba(255, 255, 255, 0.25);
+      border-radius: 50%;
+      animation: floatUp 10s infinite ease-in;
+      filter: blur(2px);
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-120vh) scale(1.4); opacity: 0; }
+    }
+
+    /* LOGIN CARD */
+    .login-card {
+      width: 360px;
+      padding: 40px;
+      border-radius: 20px;
+      
+      /* GLASS EFFECT */
+      backdrop-filter: blur(18px);
+      background: rgba(255, 255, 255, 0.30);
+
+      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+      animation: fadeIn 0.8s ease;
+      z-index: 10;
+
+      border: 1px solid rgba(255,255,255,0.4);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .login-card h2 {
+      margin-bottom: 25px;
+      text-align: center;
+      font-size: 28px;
+      color: #ffffff;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .form-label {
+      color: #e6f3ff;
+      font-size: 0.9em;
+      margin: 5px 0;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+
+      /* SOFT WHITE INPUT */
+      background: rgba(255, 255, 255, 0.35);
+      color: #003566;
+      font-size: 1em;
+      margin-bottom: 18px;
+      transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+      background: rgba(255,255,255,0.55);
+      outline: none;
+      box-shadow: 0 0 10px rgba(255,255,255,0.7);
+    }
+
+    ::placeholder {
+      color: rgba(0,0,40,0.5);
+    }
+
+    /* BUTTON */
+    .btn-login {
+      width: 100%;
+      padding: 12px;
+      border-radius: 25px;
+      border: none;
+
+      /* BLUE GRADIENT */
+      background: linear-gradient(45deg, #1e88e5, #42a5f5);
+
+      color: #fff;
+      font-weight: 600;
+      font-size: 1em;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+
+    .btn-login:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+    }
+
+    /* ERROR BOX */
+    .alert {
+      background: rgba(255, 60, 60, 0.85);
+      color: #fff;
+      padding: 12px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- BUBBLE GENERATOR -->
+  <script>
+    for (let i = 0; i < 12; i++) {
+      let b = document.createElement("span");
+      b.classList.add("bubble");
+      let size = Math.random() * 70 + 40;
+      b.style.width = size + "px";
+      b.style.height = size + "px";
+      b.style.left = Math.random() * 100 + "%";
+      b.style.animationDuration = (Math.random() * 5 + 7) + "s";
+      b.style.animationDelay = Math.random() * 4 + "s";
+      document.body.appendChild(b);
+    }
+  </script>
+
+  <!-- LOGIN CARD -->
+  <div class="login-card">
+    <h2>Login</h2>
+
+    <div th:if="${error}" class="alert">
+      <span th:text="${error}"></span>
+    </div>
+
+    <form th:action="@{/validateLogin}" method="post">
+
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" name="email"
+             placeholder="Masukkan email" required>
+
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" name="password"
+             placeholder="Masukkan password" required>
+
+      <button type="submit" class="btn-login">Login</button>
+    </form>
+  </div>
+
+</body>
+</html>

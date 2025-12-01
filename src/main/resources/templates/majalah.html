@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Majalah - BeSmart</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1><a href="/dashboard" style="text-decoration: none; color: inherit;">BeSmart</a></h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/komik" class="nav-link">Komik</a></li>
+                <li><a href="/novel" class="nav-link">Novel</a></li>
+                <li><a href="/majalah" class="nav-link active">Majalah</a></li>
+                <li><a href="/pembeli" class="nav-link">Pembeli</a></li>
+                <li><a href="/penjual" class="nav-link">Penjual</a></li>
+                <li><a href="/transaksi" class="nav-link">Transaksi</a></li>
+                <li><a href="/logout" class="nav-link logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2>Kelola Data Majalah</h2>
+        
+        <section class="form-section">
+            <h3 th:if="${majalahInfo.id == null}">Tambah Majalah Baru</h3>
+            <h3 th:unless="${majalahInfo.id == null}">Edit Majalah</h3>
+            
+            <form th:action="${majalahInfo.id == null} ? '/majalah/submit/' : '/majalah/submit/' + ${majalahInfo.id}" 
+                  method="post" class="data-form">
+                
+                <div class="form-group">
+                    <label for="judul">Judul:</label>
+                    <input type="text" id="judul" name="judul" th:value="${majalahInfo.judul}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="harga">Harga:</label>
+                    <input type="text" id="harga" name="harga" th:value="${majalahInfo.harga}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tahunTerbit">Tahun Terbit:</label>
+                    <input type="text" id="tahunTerbit" name="tahunTerbit" th:value="${majalahInfo.tahunTerbit}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="penulis">Penulis/Editor:</label>
+                    <input type="text" id="penulis" name="penulis" th:value="${majalahInfo.penulis}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="hal">Jumlah Halaman:</label>
+                    <input type="text" id="hal" name="hal" th:value="${majalahInfo.hal}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="redaksi">Redaksi:</label>
+                    <input type="text" id="redaksi" name="redaksi" th:value="${majalahInfo.redaksi}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edisi">Edisi:</label>
+                    <input type="text" id="edisi" name="edisi" th:value="${majalahInfo.edisi}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="issn">ISSN:</label>
+                    <input type="text" id="issn" name="issn" th:value="${majalahInfo.issn}" required>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" name="add" th:if="${majalahInfo.id == null}" class="btn btn-primary">
+                        <i class="bi bi-plus-circle"></i> Tambah Majalah
+                    </button>
+                    <button type="submit" name="edit" th:unless="${majalahInfo.id == null}" class="btn btn-primary">
+                        <i class="bi bi-pencil-square"></i> Update Majalah
+                    </button>
+                </div>
+            </form>
+        </section>
+        
+        <section class="table-section">
+            <h3>Daftar Majalah</h3>
+            
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Judul</th>
+                            <th>Harga</th>
+                            <th>Tahun</th>
+                            <th>Penulis</th>
+                            <th>Halaman</th>
+                            <th>Redaksi</th>
+                            <th>Edisi</th>
+                            <th>ISSN</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="majalah : ${majalahList}">
+                            <td th:text="${majalah.id}"></td>
+                            <td th:text="${majalah.judul}"></td>
+                            <td th:text="${'Rp ' + #numbers.formatDecimal(majalah.harga, 0, 'COMMA', 2, 'POINT')}"></td>
+                            <td th:text="${majalah.tahunTerbit}"></td>
+                            <td th:text="${majalah.penulis}"></td>
+                            <td th:text="${majalah.hal}"></td>
+                            <td th:text="${majalah.redaksi}"></td>
+                            <td th:text="${majalah.edisi}"></td>
+                            <td th:text="${majalah.issn}"></td>
+                            <td class="action-buttons">
+                                <a th:href="@{/majalah/{id}(id=${majalah.id})}" class="btn btn-edit">
+                                    <i class="bi bi-pencil"></i> Edit
+                                </a>
+                                <form th:action="@{/majalah/submit/{id}(id=${majalah.id})}" method="post" style="display: inline;">
+                                    <button type="submit" name="delete" class="btn btn-delete" 
+                                            onclick="return confirm('Apakah Anda yakin ingin menghapus majalah ini?')">
+                                        <i class="bi bi-trash"></i> Hapus
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 BeSmart. All rights reserved.</p>
+    </footer>
+</body>
+</html>

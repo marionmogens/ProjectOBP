@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Besmart Bookstore</title>
+  <meta name="description" content="Your favorite online bookstore for comics, novels, and magazines">
+  <meta name="keywords" content="books, comics, novels, magazines, bookstore, reading">
+  <link rel="icon" type="image" href="assets/img/logo.webp">
+
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <style>
+    /* Additional CSS untuk testimonial images */
+    .testimonials .testimonial-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid #fff;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto;
+    }
+    
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Hero section full screen */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+    
+    /* Book-themed animation */
+    @keyframes floatBook {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    
+    .floating-book {
+      animation: floatBook 6s ease-in-out infinite;
+    }
+  </style>
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a th:href="@{/homepage}" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">Besmart</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#products">Products</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" th:href="@{/login}">Login</a>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section - FULL SCREEN -->
+    <section id="hero" class="hero section dark-background">
+      <div class="container">
+        <div class="row gy-4 align-items-center">
+          <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
+            <h1>Read Smarter, Live Better</h1>
+            <p>Your next great adventure is waiting between these pages. Discover it today.</p>
+            <div class="d-flex">
+              <a th:href="@{/login}" class="btn-get-started">Start Reading</a>
+            </div>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="200">
+            <div class="floating-book text-center">
+              <img src="assets/img/hero-img.png" class="img-fluid animated" alt="Book Illustration" style="max-height: 500px;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- /Hero Section -->
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>About Us</h2>
+        <p>Your Trusted Partner in Reading Journey</p>
+      </div>
+
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+           <p>
+            BeSmart is a comprehensive bookstore management system built with Java Spring Boot, implementing full CRUD (Create, Read, Update, Delete) operations with robust object-oriented programming principles.
+          </p>
+          <ul>
+            <li><i class="bi bi-check2-circle"></i> <span>Abstract Class implementation for Person and MediaCetak entities.</span></li>
+            <li><i class="bi bi-check2-circle"></i> <span>Interface implementation for Diskon.</span></li>
+            <li><i class="bi bi-check2-circle"></i> <span>Associated classes (Penjual, Pembeli, MediaCetak entities).</span></li>
+            <li><i class="bi bi-check2-circle"></i> <span>Database CRUD operations using JPA/Hibernate ORM</span></li>
+          </ul>
+          </div>
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <p>Our mission is simple: to make great books accessible to everyone. Whether you're searching for the latest bestseller, a classic novel, or that hard-to-find comic, we've got you covered.</p>
+            <p>Join our community of book lovers and discover why thousands of readers trust us for their literary adventures.</p>
+            <div class="stats mt-4">
+              <div class="row text-center">
+                <div class="col-4">
+                  <h4 class="text-primary">10K+</h4>
+                  <p>Titles Available</p>
+                </div>
+                <div class="col-4">
+                  <h4 class="text-success">5K+</h4>
+                  <p>Happy Readers</p>
+                </div>
+                <div class="col-4">
+                  <h4 class="text-warning">99%</h4>
+                  <p>Satisfaction Rate</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- /About Section -->
+
+    <!-- Team Section -->
+    <section id="team" class="team section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Our Team</h2>
+        <p>The passionate book lovers behind Besmart</p>
+      </div>
+
+      <div class="container">
+        <div class="row gy-4 justify-content-center">
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="team-member">
+              <div class="pic">
+                <img src="assets/img/person/jose.jpeg" alt="Jonassen Christian" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
+              </div>
+              <div class="member-info">
+                <h4>Jonassen Christian</h4>
+                <span>Information System '24</span>
+                <p>825240041</p>
+                <div class="social">
+                  <a href="#"><i class="bi bi-twitter-x"></i></a>
+                  <a href="#"><i class="bi bi-facebook"></i></a>
+                  <a href="#"><i class="bi bi-instagram"></i></a>
+                  <a href="#"><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="team-member">
+              <div class="pic">
+                <img src="assets/img/person/pasfoto.jpeg" alt="Marion Mogens" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
+              </div>
+              <div class="member-info">
+                <h4>Marion Mogens</h4>
+                <span>Information System '24</span>
+                <p>825240141</p>
+                <div class="social">
+                  <a href="#"><i class="bi bi-twitter-x"></i></a>
+                  <a href="#"><i class="bi bi-facebook"></i></a>
+                  <a href="#"><i class="bi bi-instagram"></i></a>
+                  <a href="#"><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="team-member">
+              <div class="pic">
+                <img src="assets/img/person/rei.jpeg" alt="Reivan Alvaro" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
+              </div>
+              <div class="member-info">
+                <h4>Reivan Alvaro</h4>
+                <span>Information System '24</span>
+                <p>825240159</p>
+                <div class="social">
+                  <a href="#"><i class="bi bi-twitter-x"></i></a>
+                  <a href="#"><i class="bi bi-facebook"></i></a>
+                  <a href="#"><i class="bi bi-instagram"></i></a>
+                  <a href="#"><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- /Team Section -->
+
+    <!-- Products Section -->
+    <section id="products" class="pricing section light-background">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Our Collection</h2>
+        <p>Find your next favorite read in our diverse collection</p>
+      </div>
+
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+            <div class="pricing-item">
+              <h3>📚 Comics</h3>
+              <h6>_______________________________</h6>
+              <ul>
+                <li><i class="bi bi-check"></i> <span>Latest manga releases</span></li>
+                <li><i class="bi bi-check"></i> <span>Graphic novel collections</span></li>
+                <li><i class="bi bi-check"></i> <span>Superhero adventures</span></li>
+                <li><i class="bi bi-check"></i> <span>Complete series sets</span></li>
+                <li><i class="bi bi-check"></i> <span>International titles</span></li>
+              </ul>
+              <a th:href="@{/login}" class="buy-btn">Explore Comics</a>
+            </div>
+          </div>
+
+          <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
+            <div class="pricing-item featured">
+              <h3>📖 Novels</h3>
+              <h6>_______________________________</h6>
+              <ul>
+                <li><i class="bi bi-check"></i> <span>Bestselling fiction</span></li>
+                <li><i class="bi bi-check"></i> <span>Award-winning literature</span></li>
+                <li><i class="bi bi-check"></i> <span>Classic masterpieces</span></li>
+                <li><i class="bi bi-check"></i> <span>Contemporary stories</span></li>
+                <li><i class="bi bi-check"></i> <span>Book club favorites</span></li>
+              </ul>
+              <a th:href="@{/login}" class="buy-btn">Discover Novels</a>
+            </div>
+          </div>
+
+          <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="300">
+            <div class="pricing-item">
+              <h3>📰 Magazines</h3>
+              <h6>_______________________________</h6>
+              <ul>
+                <li><i class="bi bi-check"></i> <span>Monthly subscriptions</span></li>
+                <li><i class="bi bi-check"></i> <span>International publications</span></li>
+                <li><i class="bi bi-check"></i> <span>Special editions</span></li>
+                <li><i class="bi bi-check"></i> <span>Various categories</span></li>
+                <li><i class="bi bi-check"></i> <span>Collector's items</span></li>
+              </ul>
+              <a th:href="@{/login}" class="buy-btn">Browse Magazines</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- /Products Section -->
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Reader Reviews</h2>
+        <p>Hear from our satisfied customers about their experiences</p>
+      </div>
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              }
+            }
+          </script>
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="assets/img/person/bigmo.jpeg" class="testimonial-img" alt="Bigmo" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
+                <h3>Bigmo</h3>
+                <h4>Streamer</h4>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <span>IZIN! , Found rare comics I've been searching for years.</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="assets/img/person/backgo.jpeg" class="testimonial-img" alt="Andrew Theofilus" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
+                <h3>Andrew Theofilus</h3>
+                <h4>SI B 24</h4>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <span>Jadi rajin beli buku karena disini lengkap dan terjangkau.</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="assets/img/person/sonja.jpeg" class="testimonial-img" alt="Jason Adhika" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
+                <h3>Jason Adhika</h3>
+                <h4>SI B 24</h4>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <span>Semurah-murahnya qpon , ini lebih murah guys. Gas beli banyak!</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </section><!-- /Testimonials Section -->
+
+  </main>
+
+  <footer id="footer" class="footer">
+    <div class="container copyright text-center mt-4">
+      <p><b><i>Object Based Programming</i></b></p>
+      <div class="credits">
+        Designed by SI B '24 :<br><br>
+        Jonassen Christian - Marion Mogens - Reivan Alvaro<br>
+        24/11/2025
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>
